@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React from 'react';
 import Cart from './components/Carrito/Cart';
 import Inicio from './components/inicio';
+import { CartContextProvider } from './components/Context/CartContext';
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
     <div className="App">    
 <Switch>
   <React.Fragment>
-
+    
       <header className="App-header">
+        <CartContextProvider>
         <Route exact path="/">
           <Inicio/>
         </Route>
@@ -51,7 +53,9 @@ function App() {
         >
           Learn React
         </a>
-      </header></React.Fragment>
+      </CartContextProvider>  
+      </header>
+      </React.Fragment>
       </Switch>
     </div></Router>
   );

@@ -1,7 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import ItemCount from './itemCount';
-
-
+import ItemCount from './itemCount'; 
 
 function ItemDetail({ ProdDetail }) {
     const onAdd = (count) =>{
