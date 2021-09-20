@@ -7,12 +7,12 @@ import ItemListContainer from './components/Container/itemListContainer';
 import ItemDetailConteiner from './components/Container/ItemDetailConteiner';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import React from 'react';
-import Cart from './components/Carrito/Cart';
+import Carrito from './components/Carrito/Cart';
 import Inicio from './components/inicio';
-import { CartContextProvider } from './components/Context/CartContext';
+import CartContextProvider from './components/Context/CartContext';
 
 function App() {
-  return (
+  return (        <CartContextProvider>
 <Router>
   <NavBar/>
     <div className="App">    
@@ -20,7 +20,7 @@ function App() {
   <React.Fragment>
     
       <header className="App-header">
-        <CartContextProvider>
+
         <Route exact path="/">
           <Inicio/>
         </Route>
@@ -38,7 +38,7 @@ function App() {
         </Route>
 
         <Route exact path="/cart">
-            <Cart/>
+            <Carrito/>
         </Route>
 
         <img src={logo} className="App-logo" alt="logo" />
@@ -53,11 +53,11 @@ function App() {
         >
           Learn React
         </a>
-      </CartContextProvider>  
+      
       </header>
       </React.Fragment>
       </Switch>
-    </div></Router>
+    </div></Router></CartContextProvider>  
   );
 }
 export default App;

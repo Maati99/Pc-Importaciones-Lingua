@@ -1,9 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 import ItemCount from './itemCount'; 
+import { useAppContext } from '../Context/CartContext';
 
 function ItemDetail({ ProdDetail }) {
+    const { addItem } = useAppContext()
     const onAdd = (count) =>{
         alert(`Usted agrego ${count} componentes`)
+        addItem(ProdDetail, count)
     }
     return (
         <div className="col-50">
@@ -12,7 +15,7 @@ function ItemDetail({ ProdDetail }) {
                     <div className="card-body">                 
                         <h1 className="text-danger card-title">{ProdDetail.title}</h1>
                         <h6 className="text-dark card-text">{ProdDetail.detail}</h6>
-                        <p className="card-text text-danger">{ProdDetail.price}</p>
+                        <p className="card-text text-danger">${ProdDetail.price}</p>
                         <ItemCount onAdd={onAdd} initial={1} stock={10}/>
                     </div>
             </div>
