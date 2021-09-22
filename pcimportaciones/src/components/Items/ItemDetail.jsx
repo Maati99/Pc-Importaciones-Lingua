@@ -8,7 +8,7 @@ function ItemDetail({ ProdDetail }) {
         alert(`Usted agrego ${count} componentes`)
         addItem(ProdDetail, count)
     }
-    return (
+    return ( 
         <div className="col-50">
             <div className="card card-block mt-3">
                 <img src={ProdDetail.urlPicture} className="card-img-top" height="300" width="500"/>

@@ -18,7 +18,6 @@ if(cart.length >= 1){
                             <button onClick={() => removeProd(elem.item.id)} className="btn btn-danger">Eliminar del Carrito</button>  
                             <img src={elem.item.urlPicture} className="card-img-top" height="300" width="500"/>
                                 <div className="card-body">
-                                       
                                     <h1 className="text-danger card-title">{elem.item.title}</h1>
                                     <h6 className="text-dark card-text">{elem.item.detail}</h6>
                                     <p className="card-text text-danger">${elem.item.price}</p>

@@ -25,9 +25,9 @@ const CartContextProvider = ({children}) => {
     }
 
    
-       const isInCart = (id) => {
-           return cart.find(element => element.item.id === id)
-       }
+    const isInCart = (id) => {
+        return cart.find(element => element.item.id === id)
+    }
    
 
     const clear = () => {

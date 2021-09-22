@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/navBar';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -33,27 +32,13 @@ function App() {
           <ItemListContainer/>
         </Route>
 
-        <Route exact path="/detalle/:id">
+        <Route exact path="/detalle/:idDetail">
             <ItemDetailConteiner/>
         </Route>
 
         <Route exact path="/cart">
             <Carrito/>
         </Route>
-
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      
       </header>
       </React.Fragment>
       </Switch>
