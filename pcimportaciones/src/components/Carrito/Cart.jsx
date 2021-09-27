@@ -1,21 +1,60 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { useAppContext } from "../Context/CartContext"
 import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { getFirestore } from "../../firebase";
+import firebase from "firebase/app"
 
 const Carrito = () => {
     const { cart, clear, removeProd, totalPrice } = useAppContext()
-    console.log( cart )
+
+    const initial = {
+        name: '',
+        phone:'',
+        email:'',
+    }
+
+    const [clientDate, setClientDate] = useState(initial)
+
+    function handlerChange (e){
+        setClientDate(
+            {
+                ...clientDate,
+                [e.target.name]: e.target.value
+            }
+        )
+    }
+
+    function handlerSubmit (e){
+        e.preventDefault()
+        const clientOrder = {
+            buyer: clientDate,
+            items: cart,
+            total: totalPrice(),
+            date: firebase.firestore.Timestamp.fromDate(new Date()),
+        }
+        const dataBase = getFirestore()
+        const orderClient = dataBase.collection('orders')
+        orderClient.add(clientOrder)
+        .then(order => alert(`la orden de compra es: ${order.id}`))
+        .catch(error => console.log(error))
+        .finally(()=>{
+            setClientDate(initial)
+            clear()
+        })
+    }
+
 if(cart.length >= 1){
   return(
 <section className="container-fluid mt-2">
     <div className="card mt-3 bg-secondary bg-gradient">
       <button onClick={clear} className="btn btn-danger">LIMPIAR CARRITO</button>
         <div  className="container-fluid mt-2">
-            <div  className="row">  
-                    {cart.map(elem => 
+            <div  className="row">
+                    {cart.map(elem =>
                     <div key={elem.item.id} className="col mt-4">
                         <div className="card">
-                            <button onClick={() => removeProd(elem.item.id)} className="btn btn-danger">Eliminar del Carrito</button>  
+                            <button onClick={() => removeProd(elem.item.id)} className="btn btn-danger">Eliminar del Carrito</button>
                             <img src={elem.item.urlPicture} className="card-img-top" height="300" width="500"/>
                                 <div className="card-body">
                                     <h1 className="text-danger card-title">{elem.item.title}</h1>
@@ -29,6 +68,21 @@ if(cart.length >= 1){
         </div>
             <h4 className="text-warning mt-5">El precio total de su compra es de ${totalPrice()}</h4>
     </div>
+        <form onChange={handlerChange} onSubmit={handlerSubmit} className="form-inline">
+            <div className="form-group">
+                <label>Nombre :</label>
+            <input type="text" name="name" value={clientDate.name}/>
+            </div>
+            <div className="form-group">
+                <label>Telefono :</label>
+                <input type="text" name="phone" value={clientDate.phone} />
+            </div>
+            <div className="form-group">
+                <label>Email    :</label>
+                <input type="email" name="email" value={clientDate.email} />
+            </div>
+                <button className="btn btn-success">Finalizar compra</button>
+        </form>
 </section>
     )
     }

@@ -19,12 +19,12 @@ function ItemDetailConteiner() {
         } )
         .catch(error=>console.log(error))
         .finally(()=> setloading(false))
-}, [idDetail]); 
+}, [idDetail]);
     return (
     <>
                     {loading ? <div className="container text-warning"><h2>CARGANDO PRODUCTOS</h2><img src="https://i.gifer.com/ZZ5H.gif" height="80" width="78"/></div> :
                     <h1 className="text-warning">DETALLE<ItemDetail ProdDetail = {ProdDetail}/></h1> }
-     </>   
+     </>
     )
 
 }

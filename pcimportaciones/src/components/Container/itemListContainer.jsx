@@ -10,7 +10,7 @@ function ItemListContainer () {
 // Logica del catalogo
     useEffect(()=>{
         const dataBase = getFirestore()
-        const dbQuery = dataBase.collection('componentes')  
+        const dbQuery = dataBase.collection('componentes')
             const queryCondition = id ? dbQuery.where('id', '==', id)
             :
             dbQuery
@@ -19,19 +19,19 @@ function ItemListContainer () {
                 if(data.size===0){
                     console.log('Nos encontramos sin stock')
                 }
-                setItems( data.docs.map(item => ({ id: item.data().id, ...item.data() })))                
+                setItems( data.docs.map(item => ({ id: item.data().id, ...item.data() })))
             })
 
-    }, [id]); 
+    }, [id]);
 return(
     <section>
         <h1 className="text-warning mt-3">COMPONENTES</h1>
         <div  className="container-fluid mt-2">
-            <div  className="row">  
+            <div  className="row">
                 <ProductsDom items = { items }/>
             </div>
         </div>
-    </section>    
+    </section>
     );
 }
 

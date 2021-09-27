@@ -11,38 +11,39 @@ import Inicio from './components/inicio';
 import CartContextProvider from './components/Context/CartContext';
 
 function App() {
-  return (        <CartContextProvider>
-<Router>
-  <NavBar/>
-    <div className="App">    
-<Switch>
-  <React.Fragment>
-    
-      <header className="App-header">
+  return (    <CartContextProvider>
+                <Router>
+                      <NavBar/>
+                        <div className="App">
+                 <Switch>
+                    <React.Fragment>
+                      <header className="App-header">
 
-        <Route exact path="/">
-          <Inicio/>
-        </Route>
-        
-        <Route exact path="/componentes">
-          <ItemListContainer/>
-        </Route>
+                  <Route exact path="/">
+                    <Inicio/>
+                  </Route>
 
-        <Route exact path="/componentes/:id">
-          <ItemListContainer/>
-        </Route>
+                  <Route exact path="/componentes">
+                      <ItemListContainer/>
+                  </Route>
 
-        <Route exact path="/detalle/:idDetail">
-            <ItemDetailConteiner/>
-        </Route>
+                  <Route exact path="/componentes/:id">
+                     <ItemListContainer/>
+                  </Route>
 
-        <Route exact path="/cart">
-            <Carrito/>
-        </Route>
-      </header>
-      </React.Fragment>
-      </Switch>
-    </div></Router></CartContextProvider>  
+                  <Route exact path="/detalle/:idDetail">
+                      <ItemDetailConteiner/>
+                  </Route>
+
+                  <Route exact path="/cart">
+                      <Carrito/>
+                  </Route>
+                      </header>
+                  </React.Fragment>
+                </Switch>
+                    </div>
+      </Router>
+    </CartContextProvider>
   );
 }
 export default App;
