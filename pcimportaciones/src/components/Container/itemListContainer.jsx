@@ -25,8 +25,8 @@ function ItemListContainer () {
     }, [id]);
 return(
     <section>
-        <h1 className="text-warning mt-3">COMPONENTES</h1>
-        <div  className="container-fluid mt-2">
+        <h1 className="text-warning mt-3">COMPONENTES Y PERIFERICOS</h1>
+        <div  className="container mt-2">
             <div  className="row">
                 <ProductsDom items = { items }/>
             </div>

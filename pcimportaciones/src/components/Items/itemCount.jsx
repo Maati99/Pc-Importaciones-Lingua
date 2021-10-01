@@ -20,20 +20,20 @@ const ItemCount = ({stock, initial, onAdd}) => {
       setCount (initial)
       setCambioB(true)
     }
-    
+
     return (
       <div className="conteiner">
         <button onClick={handlerResta} className="btn btn-info m-2">-</button>
         <label className="text-success">{count}</label>
         <button onClick={handlerSuma} className="btn btn-info m-2">+</button>
         {
-          cambioB ?  
+          cambioB ?
           <div>
           <Link to='/cart'><div><button className="btn btn-success">FINALIZAR COMPRA</button></div></Link>
             <Link to='/componentes'><button className="btn btn-success">SEGUIR COMPRANDO</button></Link>
           </div>
           : <div><button onClick={handlerOnAdd} className="btn btn-success">AGREGAR</button></div>
-        } 
+        }
       </div>
     );
   }

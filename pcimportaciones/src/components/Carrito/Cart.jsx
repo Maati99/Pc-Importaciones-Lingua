@@ -47,41 +47,36 @@ const Carrito = () => {
 if(cart.length >= 1){
   return(
 <section className="container-fluid mt-2">
-    <div className="card mt-3 bg-secondary bg-gradient">
       <button onClick={clear} className="btn btn-danger">LIMPIAR CARRITO</button>
-        <div  className="container-fluid mt-2">
-            <div  className="row">
+                    <div className="overflow-auto mt-4 mb-5 border border-light">
+                        <table className="bg-white mb-0 table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Cantidad</th>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Descripción</th>
+                                    <th>Eliminar del carrito</th>
+                                    </tr>
+                            </thead>
                     {cart.map(elem =>
-                    <div key={elem.item.id} className="col mt-4">
-                        <div className="card">
-                            <button onClick={() => removeProd(elem.item.id)} className="btn btn-danger">Eliminar del Carrito</button>
-                            <img src={elem.item.urlPicture} className="card-img-top" height="300" width="500"/>
-                                <div className="card-body">
-                                    <h1 className="text-danger card-title">{elem.item.title}</h1>
-                                    <h6 className="text-dark card-text">{elem.item.detail}</h6>
-                                    <p className="card-text text-danger">${elem.item.price}</p>
-                                    <p className="card-text text-danger">Cantidad: {elem.quantity}</p>
-                                </div>
-                        </div>
-                    </div>)}
-            </div>
-        </div>
+                            <tbody key={elem.item.id} >
+                                <tr>
+                                    <td>{elem.quantity}</td>
+                                    <td><img src={elem.item.urlPicture}  height="80" width="80"/><div>{elem.item.title}</div></td>
+                                    <td><div>${elem.item.price}</div></td>
+                                    <td><div><p>{elem.item.detail}</p></div></td>
+                                    <td><div><button onClick={() => removeProd(elem.item.id)} className="btn btn-danger">X</button></div></td>
+                                </tr>
+                            </tbody>)}
+            </table>
             <h4 className="text-warning mt-5">El precio total de su compra es de ${totalPrice()}</h4>
     </div>
-        <form onChange={handlerChange} onSubmit={handlerSubmit} className="form-inline">
-            <div className="form-group">
-                <label>Nombre :</label>
-            <input type="text" name="name" value={clientDate.name}/>
-            </div>
-            <div className="form-group">
-                <label>Telefono :</label>
-                <input type="text" name="phone" value={clientDate.phone} />
-            </div>
-            <div className="form-group">
-                <label>Email    :</label>
-                <input type="email" name="email" value={clientDate.email} />
-            </div>
-                <button className="btn btn-success">Finalizar compra</button>
+        <form onChange={handlerChange} onSubmit={handlerSubmit}>
+                <input className="m-3" placeholder="Nombre y apellido" type="text" name="name" value={clientDate.name}/>
+                <input className="m-3" placeholder="Telefono" type="text" name="phone" value={clientDate.phone} />
+                <input className="m-3" placeholder="Email" type="email" name="email" value={clientDate.email} />
+                <div><button className="btn btn-success">Finalizar compra</button></div>
         </form>
 </section>
     )
